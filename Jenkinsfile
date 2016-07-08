@@ -1,8 +1,11 @@
 def buildIn(env) {
     
-    node('docker') {
+    node {
     
+        echo 'Checking out project toby-marks/oracle-cd-demo from Github'
         git 'https://github.com/toby-marks/oracle-cd-demo.git'
+
+        echo 'Spawning Docker database container to deploy app'
         docker.image(env).inside {
             sh 'su oracle'
             sh 'cd $ORACLE_HOME'
@@ -12,28 +15,26 @@ def buildIn(env) {
     }
 }
 
+stage 'Build and deploy'
+
 parallel '11g': {
 
-    node {
-        echo 'Build and deploy app on 11g'
-        echo 'Run tests'
-    }    
+    echo 'Build and deploy app on 11g'
 
 }, '12c': {
 
-    node {
-        echo 'Build and deploy app on 12c'
-        buildIn('sath89/oracle-12c')
+    echo 'Build and deploy app on 12c'
+    buildIn('sath89/oracle-12c')
 
-        echo 'Run tests'
-    }
 }
 
+stage 'Run tests'
+
+stage 'Deploy to production'
 node {
 
-    stage 'Request final approval for production deployment', concurrency: 1
     input 'Ready to promote?'
     
-    stage 'Deploy to prod'    
+    echo 'Deploy to prod'    
 
 }
