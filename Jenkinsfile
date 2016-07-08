@@ -15,17 +15,17 @@ def buildIn(env) {
 parallel '11g': {
 
     node {
-        stage 'Build and deploy app on 11g'
-        stage 'Run tests'
+        echo 'Build and deploy app on 11g'
+        echo 'Run tests'
     }    
 
 }, '12c': {
 
     node {
-        stage 'Build and deploy app on 12c'
+        echo 'Build and deploy app on 12c'
         buildIn('sath89/oracle-12c')
 
-        stage 'Run tests'
+        echo 'Run tests'
     }
 }
 
