@@ -12,13 +12,13 @@ def buildIn(env) {
     }
 }
 
-parallel 11g: {
+parallel '11g': {
 
     stage 'Build and deploy app on 11g'
 
     stage 'Run tests'
     
-}, 12c: {
+}, '12c': {
 
     stage 'Build and deploy app on 12c'
     buildIn('sath89/oracle-12c')
