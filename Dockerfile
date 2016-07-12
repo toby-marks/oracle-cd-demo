@@ -13,8 +13,7 @@ RUN apt-get install -y docker-engine
 
 #RUN groupadd docker
 RUN gpasswd -a jenkins docker
-RUN java -version
-RUN service docker start
+#RUN service docker start
 
 USER jenkins
 
