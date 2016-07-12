@@ -19,15 +19,18 @@ USER root
 RUN apt-get update -qq && apt-get install -qqy apt-transport-https ca-certificates supervisor
 
 #
-# Create log folders for supervisor, jenkins and docker
+#   Create log folders for supervisor, jenkins and docker
 #
 RUN mkdir -p /var/log/supervisor \
     && mkdir -p /var/log/docker \
     && mkdir -p /var/log/jenkins
 
-RUN chown root:jenkins /var/log \             #   allow jenkins to write logs
+#
+#   Allow jenkins to write logs to /var/log
+#
+RUN chown root:jenkins /var/log \
     && chmod 775 /var/log \
-    && chown root:jenkins /var/log/jenkins \  #   allow jenkins to write logs
+    && chown root:jenkins /var/log/jenkins \
     && chmod 775 /var/log/jenkins
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
