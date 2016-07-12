@@ -63,3 +63,4 @@ RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 #
 USER root
 CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+
