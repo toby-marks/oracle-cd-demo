@@ -25,6 +25,9 @@ RUN mkdir -p /var/log/supervisor
 RUN mkdir -p /var/log/docker
 RUN mkdir -p /var/log/jenkins
 
+RUN chown root:jenkins /var/log/jenkins    #   allow jenkins to write logs
+RUN chmod 775 /var/log/jenkins
+
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 #
