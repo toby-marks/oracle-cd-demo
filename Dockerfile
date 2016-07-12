@@ -21,29 +21,29 @@ RUN apt-get update -qq && apt-get install -qqy apt-transport-https ca-certificat
 #
 # Create log folders for supervisor, jenkins and docker
 #
-RUN mkdir -p /var/log/supervisor
-RUN mkdir -p /var/log/docker
-RUN mkdir -p /var/log/jenkins
+RUN mkdir -p /var/log/supervisor \
+    && mkdir -p /var/log/docker \
+    && mkdir -p /var/log/jenkins
 
-RUN chown root:jenkins /var/log/jenkins    #   allow jenkins to write logs
-RUN chmod 775 /var/log/jenkins
+RUN chown root:jenkins /var/log \             #   allow jenkins to write logs
+    && chmod 775 /var/log \
+    && chown root:jenkins /var/log/jenkins \  #   allow jenkins to write logs
+    && chmod 775 /var/log/jenkins
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 #
 #   Install Docker
 #
-RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-RUN echo "deb https://apt.dockerproject.org/repo debian-jessie main" >> /etc/apt/sources.list.d/docker.list
-RUN apt-get update -qq
-#RUN apt-cache policy docker-engine
-#RUN apt-get update -qq
-RUN apt-get install -qqy docker-engine
+RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D \
+    && echo "deb https://apt.dockerproject.org/repo debian-jessie main" >> /etc/apt/sources.list.d/docker.list \
+    && apt-get update -qq \
+    && apt-get install -qqy docker-engine
 
 #
 #   Add jenkins to docker group so jenkins has permission to run docker
 #
-#RUN groupadd docker
+#RUN groupadd docker                          #   not needed; already exists 
 RUN gpasswd -a jenkins docker
 
 #
@@ -58,8 +58,8 @@ RUN chmod +x /usr/local/bin/wrapdocker
 #
 USER jenkins
 COPY plugins.txt /usr/share/jenkins/ref/
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
-RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
+RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt \
+    && echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 
 #
 #   Switch back to root and start Jenkins, Docker
