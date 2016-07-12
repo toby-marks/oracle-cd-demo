@@ -61,6 +61,6 @@ RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 #
 #   Switch back to root and start Jenkins, Docker
 #
-USER root
-CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+# USER root
+# CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 
