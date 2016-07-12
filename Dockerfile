@@ -9,7 +9,7 @@ RUN echo "deb https://apt.dockerproject.org/repo debian-jessie main" >> /etc/apt
 RUN apt-get update
 RUN apt-get install -y docker-engine
 
-RUN groupadd docker
+#RUN groupadd docker
 RUN gpasswd -a jenkins docker
 RUN service docker start
 
