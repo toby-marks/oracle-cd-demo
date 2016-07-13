@@ -59,14 +59,14 @@ RUN chmod +x /usr/local/bin/wrapdocker
 #
 #   Pre-install selected Jenkins plugins and disable banner page
 #
-USER jenkins
+# USER jenkins
 COPY plugins.txt /usr/share/jenkins/ref/
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
-# RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
+RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 
 #
 #   Switch back to root and start Jenkins, Docker
 #
-USER root
+# USER root
 CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 
