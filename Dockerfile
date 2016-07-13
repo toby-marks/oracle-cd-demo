@@ -9,6 +9,13 @@ FROM jenkinsci/jenkins
 MAINTAINER tobyjmarks@gmail.com
 
 #
+#   Pre-install selected Jenkins plugins and disable banner page
+#
+COPY plugins.txt /usr/share/jenkins/ref/
+RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt \
+    && echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
+
+#
 #   We need to install Docker and other necessary apps as root
 #
 USER root
@@ -54,15 +61,6 @@ RUN gpasswd -a jenkins docker
 #
 ADD ./wrapdocker /usr/local/bin/wrapdocker
 RUN chmod +x /usr/local/bin/wrapdocker
-
-
-#
-#   Pre-install selected Jenkins plugins and disable banner page
-#
-# USER jenkins
-COPY plugins.txt /usr/share/jenkins/ref/
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
-RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 
 #
 #   Switch back to root and start Jenkins, Docker
