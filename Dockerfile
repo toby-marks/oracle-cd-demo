@@ -13,7 +13,8 @@ MAINTAINER tobyjmarks@gmail.com
 #
 COPY plugins.txt /usr/share/jenkins/ref/
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt \
-    && echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
+    && echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state \
+    && echo 2.0 > /var/jenkins_home/jenkins.install.UpgradeWizard.state
 
 #
 #   We need to install Docker and other necessary apps as root
