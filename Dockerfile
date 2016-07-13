@@ -61,12 +61,6 @@ RUN chmod +x /usr/local/bin/wrapdocker
 #
 USER jenkins
 COPY plugins.txt /usr/share/jenkins/ref/
-
-USER root
-RUN chown -R jenkins:jenkins /usr/share/jenkins
-RUN chown -R jenkins:jenkins /var/jenkins_home
-
-USER jenkins 
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt \
     && echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 
