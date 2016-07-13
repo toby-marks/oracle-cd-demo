@@ -21,6 +21,8 @@ RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt \
 #
 USER root
 
+RUN chown -R jenkins:jenkins /var/jenkins_home
+
 #
 #   Install Docker prereqs, including supervisor to start the daemon
 #
