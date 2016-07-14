@@ -25,7 +25,9 @@ USER root
 #   We need to install Docker and other necessary apps as root
 #
 RUN echo 2.0 > /var/jenkins_home/jenkins.install.UpgradeWizard.state
+RUN ls -l /var/jenkins_home
 RUN chown -R jenkins:jenkins /usr/share/jenkins/ref
+RUN ls -l /usr/share/jenkins/ref
 RUN chown -R jenkins:jenkins /var/jenkins_home/jenkins.install.UpgradeWizard.state
 
 #
