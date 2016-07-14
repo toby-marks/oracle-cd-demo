@@ -14,14 +14,12 @@ MAINTAINER tobyjmarks@gmail.com
 COPY plugins.txt /usr/share/jenkins/ref/
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt \
     && echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state \
-    && echo 2.0 > /var/jenkins_home/jenkins.install.UpgradeWizard.state
+    && chown -R jenkins:jenkins /usr/share/jenkins/ref
 
 #
 #   We need to install Docker and other necessary apps as root
 #
 USER root
-
-RUN chown -R jenkins:jenkins /var/jenkins_home
 
 #
 #   Install Docker prereqs, including supervisor to start the daemon
@@ -66,8 +64,7 @@ ADD ./wrapdocker /usr/local/bin/wrapdocker
 RUN chmod +x /usr/local/bin/wrapdocker
 
 #
-#   Switch back to root and start Jenkins, Docker
+#   Start Jenkins, Docker
 #
-# USER root
 CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 
