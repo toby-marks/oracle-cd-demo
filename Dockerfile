@@ -11,15 +11,20 @@ MAINTAINER tobyjmarks@gmail.com
 #
 #   Pre-install selected Jenkins plugins and disable banner page
 #
+USER jenkins
 COPY plugins.txt /usr/share/jenkins/ref/
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt \
-    && echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state \
-    && chown -R jenkins:jenkins /usr/share/jenkins/ref
+    && echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 
 #
 #   We need to install Docker and other necessary apps as root
 #
 USER root
+
+#
+#   We need to install Docker and other necessary apps as root
+#
+RUN chown -R jenkins:jenkins /usr/share/jenkins/ref
 
 #
 #   Install Docker prereqs, including supervisor to start the daemon
