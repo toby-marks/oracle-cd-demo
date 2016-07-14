@@ -67,4 +67,3 @@ RUN chmod +x /usr/local/bin/wrapdocker
 #   Start Jenkins, Docker
 #
 RUN /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
-CMD chmod -R jenkins:jenkins /var/jenkins_home
