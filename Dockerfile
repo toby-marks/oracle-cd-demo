@@ -41,8 +41,6 @@ RUN chown root:jenkins /var/log \
     && chown root:jenkins /var/log/jenkins \
     && chmod 775 /var/log/jenkins
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
 #
 #   Install Docker
 #
@@ -60,8 +58,19 @@ RUN gpasswd -a jenkins docker
 #
 #   Install the magic wrapper
 #
-ADD ./wrapdocker /usr/local/bin/wrapdocker
+COPY ./wrapdocker /usr/local/bin/wrapdocker
 RUN chmod +x /usr/local/bin/wrapdocker
+
+#
+#   Install the custom jenkins startup script needed to copy files as jenkins
+#   
+COPY ./jenkins.sh /usr/local/bin/jenkins.sh
+RUN chmod +x /usr/local/bin/jenkins.sh
+
+#
+#   Install the supervisor config file   
+#
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 #
 #   Start Jenkins, Docker
