@@ -2,7 +2,6 @@ workflow-aggregator:latest
 token-macro:latest
 workflow-job:latest
 workflow-durable-task-step:latest
-external-monitor-job:latest
 workflow-support:latest
 ace-editor:latest
 workflow-multibranch:latest
@@ -13,7 +12,6 @@ matrix-auth:latest
 jquery-detached:latest
 durable-task:latest
 workflow-cps-global-lib:latest
-ws-cleanup:latest
 branch-api:latest
 workflow-cps:latest
 github-branch-source:latest
@@ -24,7 +22,6 @@ matrix-project:latest
 antisamy-markup-formatter:latest
 github-api:latest
 git-server:latest
-ldap:latest
 momentjs:latest
 workflow-step-api:latest
 pipeline-input-step:latest
@@ -32,16 +29,13 @@ handlebars:latest
 pipeline-stage-step:latest
 git:latest
 pipeline-stage-view:latest
-pam-auth:latest
 pipeline-build-step:latest
 icon-shim:latest
-ssh-slaves:latest
 credentials:latest
 ssh-credentials:latest
 plain-credentials:latest
 script-security:latest
 mailer:latest
-timestamper:latest
 windows-slaves:latest
 github-organization-folder:latest
 junit:latest
