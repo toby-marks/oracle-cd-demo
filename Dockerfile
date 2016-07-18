@@ -62,12 +62,6 @@ COPY ./wrapdocker /usr/local/bin/wrapdocker
 RUN chmod +x /usr/local/bin/wrapdocker
 
 #
-#   Install the custom jenkins startup script needed to copy files as jenkins
-#   
-COPY ./jenkins.sh /usr/local/bin/jenkins.sh
-RUN chmod +x /usr/local/bin/jenkins.sh
-
-#
 #   Install the supervisor config file   
 #
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
@@ -75,4 +69,4 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 #
 #   Start Jenkins, Docker
 #
-RUN /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
