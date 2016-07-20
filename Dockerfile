@@ -67,6 +67,13 @@ RUN chmod +x /usr/local/bin/wrapdocker
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 #
+#   Install and run ngrok to set up a reverse proxy for the Github webhook
+#
+ADD ngrok.tar.gz /usr/local/bin/
+RUN chmod +x /usr/local/bin/ngrok
+RUN /usr/local/bin/ngrok http 8080 &
+
+#
 #   Start Jenkins, Docker
 #
 ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
