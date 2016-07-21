@@ -17,22 +17,18 @@ def buildIn(env) {
 
 stage 'Build and deploy'
 
-parallel (
-
-    11g: {
+parallel 11g: {
  
         node {
             echo 'Build and deploy app on 11g'
         }
-    }, 
-    
-    12c: {
+
+}, 12c: {
 
         node {
             echo 'What do you build on 12c?'
         }
-    }
-)
+}
 
 stage 'Run tests'
 
