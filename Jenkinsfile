@@ -23,7 +23,7 @@ parallel '11g': {
 
 }, '12c': {
 
-    echo 'What do you like on 12c?'
+    echo 'What do you do on 12c?'
     buildIn('sath89/oracle-12c')
 
 }
