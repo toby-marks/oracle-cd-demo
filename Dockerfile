@@ -54,6 +54,7 @@ RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 581
 #
 #RUN groupadd docker                          #   not needed; already exists 
 RUN gpasswd -a jenkins docker
+RUN gpasswd -a jenkins staff                  #   when mapping /var/run/docker.sock from host
 
 #
 #   Install the magic wrapper
