@@ -3,7 +3,7 @@ def buildIn(env) {
     node {
     
         echo 'Checking out project toby-marks/oracle-cd-demo from Github'
-        git 'https://github.com/toby-marks/oracle-cd-demo.git'
+        git credentialsId: 'fcccf299-4944-494f-8755-d30f2e185922', url: 'http://github.com/toby-marks/oracle-cd-demo'
 
         echo 'Spawning Docker database container to deploy app'
         docker.image(env).inside {
