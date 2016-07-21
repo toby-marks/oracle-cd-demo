@@ -7,10 +7,7 @@ def buildIn(env) {
 
         echo 'Spawning Docker database container to deploy app'
         docker.image(env).inside {
-            sh 'su oracle'
-            sh 'cd $ORACLE_HOME'
-            sh 'bin/sqlplus / as sysdba @$env.WORKSPACE/app/exec_all.sql'
-            sh 'cat exec_all.[0-9]'
+            sh 'echo hello toby'
         }
     }
 }
