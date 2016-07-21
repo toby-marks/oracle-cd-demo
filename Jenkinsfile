@@ -27,6 +27,7 @@ parallel oracle11g: {
 
         node {
             echo 'What do you build on 12c?'
+            buildIn('sath89/oracle-12c')
         }
 }
 
