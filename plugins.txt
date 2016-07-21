@@ -35,10 +35,13 @@ credentials:latest
 ssh-credentials:latest
 plain-credentials:latest
 script-security:latest
+docker-commons:latest
 mailer:latest
 windows-slaves:latest
 github-organization-folder:latest
+authentication-tokens:latest
 junit:latest
+docker-workflow:latest
 scm-api:latest
 github:latest
 cloudbees-folder:latest
