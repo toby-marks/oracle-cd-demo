@@ -6,7 +6,7 @@ def buildIn(env) {
         git credentialsId: 'fcccf299-4944-494f-8755-d30f2e185922', url: 'http://github.com/toby-marks/oracle-cd-demo'
 
         echo 'Spawning Docker database container to deploy app'
-        docker.image(env).inside {
+        docker.image(env).inside('-u 1001:1001') {
             sh 'echo hello toby'
         }
     }
