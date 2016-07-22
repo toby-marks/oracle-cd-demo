@@ -16,7 +16,7 @@ parallel oracle11g: {
                 git credentialsId: 'fcccf299-4944-494f-8755-d30f2e185922', url: 'http://github.com/toby-marks/oracle-cd-demo'
             
                 sh 'pwd; ls -l'
-                sh 'su oracle -c "cat plugins.txt"'
+                sh 'su oracle -c "echo $ORACLE_HOME"'
             }
         }
 }
