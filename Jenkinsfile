@@ -15,7 +15,7 @@ parallel oracle11g: {
                 echo 'Checking out project toby-marks/oracle-cd-demo from Github'
                 git credentialsId: 'fcccf299-4944-494f-8755-d30f2e185922', url: 'http://github.com/toby-marks/oracle-cd-demo'
             
-                sh 'chown -R oracle:dba ./*; pwd; ls -l'
+                sh 'pwd; ls -l'
             }
         }
 }
