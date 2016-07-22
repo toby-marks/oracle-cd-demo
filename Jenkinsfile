@@ -16,7 +16,6 @@ parallel oracle11g: {
                 git credentialsId: 'fcccf299-4944-494f-8755-d30f2e185922', url: 'http://github.com/toby-marks/oracle-cd-demo'
             
                 sh 'chown -R oracle:dba *; pwd; ls -l'
-                sh 'su oracle -c "ls"'
             }
         }
 }
