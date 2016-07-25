@@ -10,7 +10,7 @@ parallel oracle11g: {
 
         node {
             echo 'Build and deploy app on 12c container'
-            docker.image('sath89/oracle-12c').inside('-u 0:0 -e WEB_CONSOLE=false') {
+            docker.image('sath89/oracle-12c').inside('-u 0:0 -e WEB_CONSOLE=false -p 1521 -v /u01/app/oracle') {
 
                 echo 'Checking out project toby-marks/oracle-cd-demo from Github'
                 git credentialsId: 'fcccf299-4944-494f-8755-d30f2e185922', url: 'http://github.com/toby-marks/oracle-cd-demo'
